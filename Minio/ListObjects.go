@@ -22,9 +22,11 @@ func main() {
 
 	// Indicate to our routine to exit cleanly upon return.
 	defer close(doneCh)
-
+	count := 0
 	// List all objects from a bucket-name with a matching prefix.
 	for object := range s3Client.ListObjects(myBucket, "", false, doneCh) {
+//	for object := range s3Client.ListObjects(myBucket, "test_keyspace", false, doneCh) {
+		count++
 		if object.Err != nil {
 			fmt.Println(object.Err)
 			return
@@ -39,5 +41,6 @@ func main() {
 //		fmt.Println(8, object.StorageClass)
 		fmt.Println(object.Key)
 	}
+	fmt.Println("Count", count)
 	return
 }

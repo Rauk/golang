@@ -4,6 +4,7 @@ import (
 	"log"
 	"github.com/minio/minio-go"
 	"fmt"
+	"sync"
 )
 
 func main() {
@@ -32,14 +33,19 @@ func main() {
 		}
 		arr = append(arr, object)
 	}
+	var wg sync.WaitGroup
 	for j, _ := range arr {
-//		go func(j int) {
+		wg.Add(1)
+		go func(j int) {
+			defer wg.Done()
 			err = s3Client.RemoveObject(myBucket, arr[j].Key)
 			if err != nil {
 				log.Fatalln(err)
 			}
 			log.Println("Success", arr[j].Key)
-//		} (j)
+		} (j)
 	}
+	log.Println("Count", len(arr))
+	wg.Wait()
 	return
 }
