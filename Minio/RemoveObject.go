@@ -7,19 +7,11 @@ import (
 )
 
 func main() {
-	accessKey := "439SQDG76BGBAM8ILSKR"
-	secretKey := "zu7wZxwJYKUHMf7KJISKFSbvUC546Ge3KO3qVXbT"
-	url := "10.47.2.3"
-//	object := "2016-03-16.135453.test-0000000102"
-	object := "test_keyspace"
-//	myBucket := "raunaktestbucket"
-	myBucket := "minio-bucket1"
-
-	s3Client, err := minio.NewV2(url, accessKey, secretKey, true)
+	s3Client, err := minio.NewV2(Url, AccessKey, SecretKey, true)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	err = s3Client.RemoveObject(myBucket, object)
+	err = s3Client.RemoveObject(MyBucket, MyObject)
 	if err != nil {
 		log.Fatalln(err)
 	}

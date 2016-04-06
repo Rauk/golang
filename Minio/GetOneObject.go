@@ -12,7 +12,7 @@ func main()  {
 		log.Fatalln(err)
 	}
 
-	reader, err := svc.GetObject(myBucket, myObject)
+	reader, err := svc.GetObject(MyBucket, MyObject)
 	if err != nil {
 		log.Fatalln(err)
 	}
