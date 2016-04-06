@@ -8,13 +8,7 @@ import (
 )
 
 func main() {
-	accessKey := "439SQDG76BGBAM8ILSKR"
-	secretKey := "zu7wZxwJYKUHMf7KJISKFSbvUC546Ge3KO3qVXbT"
-	url := "10.47.2.3"
-	myBucket := "minio-bucket1"
-//	myBucket := "raunaktestbucket"
-
-	s3Client, err := minio.NewV2(url, accessKey, secretKey, true)
+	s3Client, err := minio.NewV2(Url, AccessKey, SecretKey, true)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -26,7 +20,7 @@ func main() {
 	var arr []minio.ObjectInfo
 
 	// List all objects from a bucket-name with a matching prefix.
-	for object := range s3Client.ListObjects(myBucket, "", false, doneCh) {
+	for object := range s3Client.ListObjects(MyBucket, "", false, doneCh) {
 		if object.Err != nil {
 			fmt.Println(object.Err)
 			return
@@ -38,7 +32,7 @@ func main() {
 		wg.Add(1)
 		go func(j int) {
 			defer wg.Done()
-			err = s3Client.RemoveObject(myBucket, arr[j].Key)
+			err = s3Client.RemoveObject(MyBucket, arr[j].Key)
 			if err != nil {
 				log.Fatalln(err)
 			}

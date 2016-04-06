@@ -7,11 +7,15 @@ import (
 )
 
 func main() {
+
+	fmt.Println(AccessKey)
 	accessKey := "439SQDG76BGBAM8ILSKR"
 	secretKey := "zu7wZxwJYKUHMf7KJISKFSbvUC546Ge3KO3qVXbT"
-	url := "10.47.2.3"
-	myBucket := "minio-bucket1"
-//	myBucket := "raunaktestbucket"
+//	url := "10.47.2.3"
+	url := "10.33.85.72:80"
+//	myBucket := "minio-bucket1"
+	myBucket := "raunaktestbucket"
+//	myBucket := "test-bucket1"
 
 	s3Client, err := minio.NewV2(url, accessKey, secretKey, true)
 	if err != nil {

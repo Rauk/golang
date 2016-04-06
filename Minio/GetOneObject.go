@@ -7,14 +7,7 @@ import (
 )
 
 func main()  {
-
-	accessKey := "439SQDG76BGBAM8ILSKR"
-	secretKey := "zu7wZxwJYKUHMf7KJISKFSbvUC546Ge3KO3qVXbT"
-	url := "10.47.2.3"
-	myBucket := "raunaktestbucket"
-	myObject := "object1"
-
-	svc, err := minio.NewV2(url, accessKey, secretKey, true)
+	svc, err := minio.NewV2(Url, AccessKey, SecretKey, true)
 	if err != nil {
 		log.Fatalln(err)
 	}

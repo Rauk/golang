@@ -17,15 +17,11 @@ func main() {
 	//	secretKey := "aFErEB+7eqCAok+KI0TQAqUE2Td7Upz2OCTJjpts"
 	//	url := "s3.amazonaws.com"
 
-	accessKey := "439SQDG76BGBAM8ILSKR"
-	secretKey := "zu7wZxwJYKUHMf7KJISKFSbvUC546Ge3KO3qVXbT"
-	url := "10.47.2.3"
-
-	svc, err := minio.NewV2(url, accessKey, secretKey, true)
+	svc, err := minio.NewV2(Url, AccessKey, SecretKey, true)
 	if err != nil {
 		log.Fatalln(err)
 	}
-	err = svc.MakeBucket("test_keyspace-0", "", "")
+	err = svc.MakeBucket("test_keyspace-0", "")
 
 	if err != nil {
 		log.Fatalln(err)
