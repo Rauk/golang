@@ -4,6 +4,7 @@ import (
 	"log"
 	"github.com/minio/minio-go"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -18,7 +19,7 @@ func main() {
 	defer close(doneCh)
 	count := 0
 	// List all objects from a bucket-name with a matching prefix.
-	for object := range s3Client.ListObjects(MyBucket, "", false, doneCh) {
+	for object := range s3Client.ListObjects(MyBucket, "", true, doneCh) {
 		count++
 		if object.Err != nil {
 			fmt.Println(object.Err)
@@ -34,6 +35,6 @@ func main() {
 //		fmt.Println(8, object.StorageClass)
 		fmt.Println(object.Key)
 	}
-	fmt.Println("Count", count)
+	fmt.Printf("Count %v of Bucket %v, Date : %v\n", count, MyBucket, time.Now())
 	return
 }

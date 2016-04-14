@@ -14,6 +14,7 @@ var Settings struct {
 
 func main() {
 	configFile, err := os.Open("config.json")
+//	configFile, err := os.Open("/Users/raunak.agarwal/learn/personalGit/GoLang/Self/config.json")
 	if err != nil {
 
 		fmt.Println("file not present", err.Error())
